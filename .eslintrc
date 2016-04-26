@@ -1,0 +1,46 @@
+{
+  "extends": ".eslintrc_base",
+  "globals": {
+    "_": true,
+    "when": true,
+    "assert": true,
+    "apiRequest": true,
+    "validator": true,
+    "expect": true
+  },
+  "rules": {
+    "no-var": 0,
+    "new-cap": [
+      2,
+      {
+        "capIsNewExceptions": [
+          "ValidDocument",
+          "ValidHeaders",
+          "Root",
+          "Data",
+          "IncludedRoot",
+          "ErrorsRoot",
+          "ResourceIdentifier",
+          "ResourceObject",
+          "ResourceCollection",
+          "ResourceLinkage",
+          "Relationship",
+          "Relationships",
+          "Link",
+          "Links",
+          "Included",
+          "FullLinkage",
+          "UniqueResourceObject",
+          "Fields",
+          "FieldName",
+          "MemberName",
+          "Error",
+          "Errors",
+          "ErrorPropertyName",
+          "Attributes",
+          "TestError"
+        ]
+      }
+    ]
+  }
+}

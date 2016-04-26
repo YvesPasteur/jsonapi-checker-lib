@@ -1,0 +1,27 @@
+{
+  "extends": [".checkbuildrc_base"],
+  "urls": ["https://raw.githubusercontent.com/iadvize/javascript-convention/master/.checkbuildrc_base"],
+  "checkbuild": {
+    // don't exit immediately if one of the tools reports an error
+    "continueOnError": true,
+    // don't exit(1) even if we had some failures
+    "allowFailures": false
+  },
+  "eslint": {
+    "args": ["**/*.js", "!*node_modules/**"],
+    "url":"https://raw.githubusercontent.com/iadvize/javascript-convention/master/.eslintrc_base"
+  },
+  "jscs": {
+    "args": ["**/*.js", "!*node_modules/**"],
+    "url":"https://raw.githubusercontent.com/iadvize/javascript-convention/master/.jscsrc"
+  },
+  "jsinspect": {
+    "args": ["src/**/*.js", "!test/**", "!*node_modules/**"],
+    "diff": true,
+    "threshold": 40
+  },
+  "buddyjs": {
+    "args": ["**/*.js", "!*node_modules/**", "!**/**.test.js"],
+    "ignore": [0, 1]
+  }
+}
