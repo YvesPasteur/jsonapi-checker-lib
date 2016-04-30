@@ -1,13 +1,8 @@
 'use strict';
 
-module.exports = function (_) {
-  const ruleValidator = require('./rules/validator')(_);
-
-  return function(chai) {
-    const expect = chai.expect;
-    var Assertion = chai.Assertion;
-
-    Assertion.addMethod('Link', function () {
+module.exports = function (_, ruleValidator, expect) {
+  return {
+    Link: function () {
       const obj = this._obj;
 
       if (typeof obj === 'string') {
@@ -21,9 +16,8 @@ module.exports = function (_) {
           expect(obj).to.not.be.an('array');
         }
       );
-    });
-
-    Assertion.addMethod('Links', function () {
+    },
+    Links: function () {
       const obj = this._obj;
 
       ruleValidator(
@@ -35,6 +29,6 @@ module.exports = function (_) {
         obj,
         (value) => expect(value).to.be.Link()
       );
-    });
+    }
   };
 };

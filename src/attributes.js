@@ -1,13 +1,9 @@
 'use strict';
 
-module.exports = function (_) {
-  const ruleValidator = require('./rules/validator')(_);
+module.exports = function (_, ruleValidator, expect) {
 
-  return function(chai) {
-    const expect = chai.expect;
-    var Assertion = chai.Assertion;
-
-    Assertion.addMethod('Attributes', function () {
+  return {
+    Attributes: function () {
       const objectUtil = require('./utils/object.js')(_);
       const obj = this._obj;
       const allKeys = objectUtil.getAllKeys(obj);
@@ -24,6 +20,6 @@ module.exports = function (_) {
           expect(allKeys).to.not.include('links');
         }
       );
-    });
+    }
   };
 };

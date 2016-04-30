@@ -1,16 +1,11 @@
 'use strict';
 
-module.exports = function (_) {
+module.exports = function (_, ruleValidator, expect) {
   const MINIMUM_HTTP_STATUS = 100;
   const MAXIMUM_HTTP_STATUS = 600;
 
-  const ruleValidator = require('./rules/validator')(_);
-
-  return function(chai) {
-    const expect = chai.expect;
-    var Assertion = chai.Assertion;
-
-    Assertion.addMethod('ErrorPropertyName', function () {
+  return {
+    ErrorPropertyName: function () {
       const allowedProperties = ['id', 'links', 'status', 'code', 'title', 'detail', 'source', 'meta'];
       const obj = this._obj;
 
@@ -18,16 +13,14 @@ module.exports = function (_) {
         'errors.allowedMembers',
         () => expect(obj).to.be.oneOf(allowedProperties)
       );
-    });
-
-    Assertion.addMethod('ErrorId', function () {
+    },
+    ErrorId: function () {
       ruleValidator(
         'errors.allowedMembers',
         () => expect(this._obj).to.be.a('string')
       );
-    });
-
-    Assertion.addMethod('ErrorLinks', function () {
+    },
+    ErrorLinks: function () {
       ruleValidator(
         'errors.allowedMembers',
         () => {
@@ -35,9 +28,8 @@ module.exports = function (_) {
           expect(this._obj).to.have.property('about');
         }
       );
-    });
-
-    Assertion.addMethod('ErrorStatus', function () {
+    },
+    ErrorStatus: function () {
       ruleValidator(
         'errors.allowedMembers',
         () => {
@@ -46,30 +38,26 @@ module.exports = function (_) {
           expect(_.parseInt(this._obj)).to.be.within(MINIMUM_HTTP_STATUS, MAXIMUM_HTTP_STATUS);
         }
       );
-    });
-
-    Assertion.addMethod('ErrorCode', function () {
+    },
+    ErrorCode: function () {
       ruleValidator(
         'errors.allowedMembers',
         () => expect(this._obj).to.be.a('string')
       );
-    });
-
-    Assertion.addMethod('ErrorTitle', function () {
+    },
+    ErrorTitle: function () {
       ruleValidator(
         'errors.allowedMembers',
         () => expect(this._obj).to.be.a('string')
       );
-    });
-
-    Assertion.addMethod('ErrorDetail', function () {
+    },
+    ErrorDetail: function () {
       ruleValidator(
         'errors.allowedMembers',
         () => expect(this._obj).to.be.a('string')
       );
-    });
-
-    Assertion.addMethod('ErrorSource', function () {
+    },
+    ErrorSource: function () {
       ruleValidator(
         'errors.allowedMembers',
         () => {
@@ -78,16 +66,14 @@ module.exports = function (_) {
           expect(_.difference(_.keys(this._obj), allowedSourceAttributes)).to.be.empty;// eslint-disable-line no-unused-expressions
         }
       );
-    });
-
-    Assertion.addMethod('ErrorMeta', function () {
+    },
+    ErrorMeta: function () {
       ruleValidator(
         'errors.allowedMembers',
         () => expect(this._obj).to.be.an('object')
       );
-    });
-
-    Assertion.addMethod('Error', function () {
+    },
+    Error: function () {
       const obj = this._obj;
 
       expect(obj).to.be.an('object');
@@ -100,9 +86,8 @@ module.exports = function (_) {
           expect(v).to.be[assertionName]();
         }
       );
-    });
-
-    Assertion.addMethod('Errors', function () {
+    },
+    Errors: function () {
       const obj = this._obj;
 
       ruleValidator(
@@ -114,6 +99,6 @@ module.exports = function (_) {
         obj,
         (v) => expect(v).to.be.Error()
       );
-    });
+    }
   };
 };

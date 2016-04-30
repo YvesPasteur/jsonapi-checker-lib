@@ -2,7 +2,7 @@
   "extends": [".checkbuildrc_base"],
   "urls": ["https://raw.githubusercontent.com/iadvize/javascript-convention/master/.checkbuildrc_base"],
   "checkbuild": {
-    "enable": ["buddyjs", "eslint", "nsp", "david"],
+    "enable": ["buddyjs", "eslint", "jsinspect", "nsp", "david"],
     // don't exit immediately if one of the tools reports an error
     "continueOnError": true,
     // don't exit(1) even if we had some failures

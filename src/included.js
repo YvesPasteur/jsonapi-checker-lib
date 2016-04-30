@@ -1,14 +1,9 @@
 'use strict';
 
-module.exports = function (_) {
-  const ruleValidator = require('./rules/validator')(_);
-
-  return function(chai) {
-    const expect = chai.expect;
-    var Assertion = chai.Assertion;
-    const identifiersUtils = require('./utils/identifiers.js')(_);
-
-    Assertion.addMethod('Included', function () {
+module.exports = function (_, ruleValidator, expect) {
+  const identifiersUtils = require('./utils/identifiers.js')(_);
+  return {
+    Included: function () {
       const obj = this._obj;
 
       ruleValidator(
@@ -20,9 +15,8 @@ module.exports = function (_) {
         obj,
         (value) => expect(value).to.be.ResourceObject()
       );
-    });
-
-    Assertion.addMethod('FullLinkage', function (document) {
+    },
+    FullLinkage: function (document) {
       const definedResourceIdentifiers = identifiersUtils.getAllDefinedResourceIdentifiers(document, []);
       const primaryDataResourceIdentifiers = identifiersUtils.getAllDefinedResourceIdentifiers(document.data, []);
       const referencesResourceIdentifiers = identifiersUtils.getAllReferencesResourceIdentifiers(document, []);
@@ -36,9 +30,8 @@ module.exports = function (_) {
         'includedResources.fullLinkage',
         () => expect(definedAndNotReferencedIdentifiers).to.be.empty
       );
-    });
-
-    Assertion.addMethod('UniqueResourceObject', function (document) {
+    },
+    UniqueResourceObject: function (document) {
       const formatToDic = function (identifiers) {
         const addValue = function (acc, identifier) {
           const key = identifier.type + '-' + identifier.id;
@@ -67,6 +60,6 @@ module.exports = function (_) {
         'includedResources.noDuplication',
         () => expect(duplicates).be.empty
       );
-    });
+    }
   };
 };

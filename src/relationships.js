@@ -1,13 +1,8 @@
 'use strict';
 
-module.exports = function (_) {
-  const ruleValidator = require('./rules/validator')(_);
-
-  return function(chai) {
-    const expect = chai.expect;
-    var Assertion = chai.Assertion;
-
-    Assertion.addMethod('ResourceLinkage', function () {
+module.exports = function (_, ruleValidator, expect) {
+  return {
+    ResourceLinkage: function () {
       const obj = this._obj;
 
       if (obj === null || obj === []) {
@@ -22,9 +17,8 @@ module.exports = function (_) {
       } else {
         expect(obj).to.be.ResourceIdentifier();
       }
-    });
-
-    Assertion.addMethod('Relationship', function () {
+    },
+    Relationship: function () {
       const obj = this._obj;
 
       ruleValidator(
@@ -60,9 +54,8 @@ module.exports = function (_) {
           'data'
         );
       }
-    });
-
-    Assertion.addMethod('Relationships', function () {
+    },
+    Relationships: function () {
       const obj = this._obj;
 
       ruleValidator(
@@ -74,6 +67,6 @@ module.exports = function (_) {
         obj,
         (value) => expect(value).to.be.Relationship()
       );
-    });
+    }
   };
 };

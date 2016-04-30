@@ -2,32 +2,28 @@
 
 const _ = require('lodash');
 const chai = require('chai');
+const expect = chai.expect;
+const ruleValidator = require('./rules/validator')(_);
 
-chai.use(require('./root')(_));
-chai.use(require('./error')(_));
-chai.use(require('./links')(_));
-chai.use(require('./attributes')(_));
-chai.use(require('./relationships')(_));
-
-chai.use(require('./resources')(_));
-chai.use(require('./included')(_));
-chai.use(require('./fields')(_));
-
-chai.use(
-  function (_chai) {
-    const expect = _chai.expect;
-    var Assertion = _chai.Assertion;
-
-    Assertion.addMethod('ValidDocument', function (options) {
+const rules = _.assign(
+  {},
+  require('./root')(_, ruleValidator, expect),
+  require('./error')(_, ruleValidator, expect),
+  require('./links')(_, ruleValidator, expect),
+  require('./attributes')(_, ruleValidator, expect),
+  require('./relationships')(_, ruleValidator, expect),
+  require('./resources')(_, ruleValidator, expect),
+  require('./included')(_, ruleValidator, expect),
+  require('./fields')(_, ruleValidator, expect),
+  {
+    ValidDocument: function (options) {
       const obj = this._obj;
       expect(obj).to.be.Root();
       expect(obj).to.be.Data(options);
       expect(obj).to.be.IncludedRoot();
       expect(obj).to.be.ErrorsRoot();
-    });
-
-    Assertion.addMethod('ValidHeaders', function() {
-      const ruleValidator = require('./rules/validator')(_);
+    },
+    ValidHeaders: function() {
       const givenHeaders = this._obj;
       const expectedContentType = 'application/vnd.api+json';
 
@@ -35,8 +31,10 @@ chai.use(
         'serverHeaders.contentType',
         () => expect(givenHeaders.contentType).to.be.equals(expectedContentType)
       );
-    });
+    }
   }
 );
+
+_.forEach(rules, (value, key) => chai.Assertion.addMethod(key, value));
 
 module.exports = chai.expect;

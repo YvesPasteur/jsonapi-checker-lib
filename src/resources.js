@@ -1,13 +1,9 @@
 'use strict';
 
-module.exports = function (_) {
-  const ruleValidator = require('./rules/validator')(_);
+module.exports = function (_, ruleValidator, expect) {
 
-  return function(chai) {
-    const expect = chai.expect;
-    var Assertion = chai.Assertion;
-
-    Assertion.addMethod('ResourceObject', function (options) {
+  return {
+    ResourceObject: function (options) {
       const obj = this._obj;
 
       const testIdAndType = function () {
@@ -91,9 +87,8 @@ module.exports = function (_) {
       testAttributes();
       testRelationships();
       testLinks();
-    });
-
-    Assertion.addMethod('ResourceIdentifier', function () {
+    },
+    ResourceIdentifier: function () {
       const obj = this._obj;
 
       const allowedProperties = ['id', 'type', 'meta'];
@@ -125,9 +120,8 @@ module.exports = function (_) {
         () => expect(unallowedProperties).to.be.empty,
         unallowedProperties[0]
       );
-    });
-
-    Assertion.addMethod('ResourceCollection', function () {
+    },
+    ResourceCollection: function () {
       const obj = this._obj;
 
       ruleValidator(
@@ -139,6 +133,6 @@ module.exports = function (_) {
         obj,
         (value) => expect(value).to.be.ResourceObject()
       );
-    });
+    }
   };
 };

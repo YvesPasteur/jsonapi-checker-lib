@@ -1,13 +1,9 @@
 'use strict';
 
-module.exports = function (_) {
-  const ruleValidator = require('./rules/validator')(_);
+module.exports = function (_, ruleValidator, expect) {
 
-  return function(chai) {
-    const expect = chai.expect;
-    var Assertion = chai.Assertion;
-
-    Assertion.addMethod('Root', function () {
+  return {
+    Root: function () {
       const obj = this._obj;
 
       ruleValidator(
@@ -35,9 +31,8 @@ module.exports = function (_) {
           expect(unallowedKeys).to. be.empty;// eslint-disable-line no-unused-expressions
         }
       );
-    });
-
-    Assertion.addMethod('Data', function (options) {
+    },
+    Data: function (options) {
       var data = this._obj.data;
 
       if (_.isUndefined(data) || data === null) {
@@ -63,9 +58,8 @@ module.exports = function (_) {
           'data'
         );
       }
-    });
-
-    Assertion.addMethod('IncludedRoot', function () {
+    },
+    IncludedRoot: function () {
       const obj = this._obj;
       const included = obj.included;
       if (_.isUndefined(included)) {
@@ -96,9 +90,8 @@ module.exports = function (_) {
         () => expect(included).to.have.UniqueResourceObject(obj),
         'included'
       );
-    });
-
-    Assertion.addMethod('ErrorsRoot', function () {
+    },
+    ErrorsRoot: function () {
       var errors = this._obj.errors;
       if (_.isUndefined(errors)) {
         return;
@@ -111,6 +104,6 @@ module.exports = function (_) {
           'errors'
         );
       }
-    });
+    }
   };
 };
