@@ -4,7 +4,7 @@ var queryParameter = {
   adhereMemberName: {
     description: 'Implementation specific query parameters MUST adhere to the same constraints as member names',
     requirementLevel: 'MUST',
-    checked: false
+    checked: true
   },
   atLeastOneNonLowerAlphaCharacter: {
     description: 'they MUST contain at least one non a-z character (U+0061 to U+007A)',

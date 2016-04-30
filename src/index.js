@@ -29,6 +29,20 @@ const rules = _.assign(
         'serverHeaders.contentType',
         () => expect(givenHeaders.contentType).to.be.equals(expectedContentType)
       );
+    },
+    ValidUrl: function(obj) {
+      const urlParser = require('url');
+      const urlObject = urlParser.parse(obj, true);
+
+      if (urlObject.query) {
+        _.forIn(
+          urlObject.query,
+          (value, key) => ruleValidator(
+            'queryParameter.adhereMemberName',
+            () => expect(key).to.be.MemberName()
+          )
+        );
+      }
     }
   }
 );

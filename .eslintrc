@@ -16,6 +16,7 @@
         "capIsNewExceptions": [
           "ValidDocument",
           "ValidHeaders",
+          "ValidUrl",
           "Root",
           "Data",
           "IncludedRoot",
