@@ -1,8 +1,6 @@
 {
     "esnext": true,
-    "disallowDanglingUnderscores": {
-        "allExcept": ["_obj"]
-    },
+    "disallowDanglingUnderscores": true,
     "disallowSpacesInNamedFunctionExpression": {
         "beforeOpeningRoundBrace": true
     },

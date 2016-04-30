@@ -5,77 +5,74 @@ module.exports = function (_, ruleValidator, expect) {
   const MAXIMUM_HTTP_STATUS = 600;
 
   return {
-    ErrorPropertyName: function () {
+    ErrorPropertyName: function (obj) {
       const allowedProperties = ['id', 'links', 'status', 'code', 'title', 'detail', 'source', 'meta'];
-      const obj = this._obj;
 
       ruleValidator(
         'errors.allowedMembers',
         () => expect(obj).to.be.oneOf(allowedProperties)
       );
     },
-    ErrorId: function () {
+    ErrorId: function (obj) {
       ruleValidator(
         'errors.allowedMembers',
-        () => expect(this._obj).to.be.a('string')
+        () => expect(obj).to.be.a('string')
       );
     },
-    ErrorLinks: function () {
-      ruleValidator(
-        'errors.allowedMembers',
-        () => {
-          expect(this._obj).to.be.an('object');
-          expect(this._obj).to.have.property('about');
-        }
-      );
-    },
-    ErrorStatus: function () {
+    ErrorLinks: function (obj) {
       ruleValidator(
         'errors.allowedMembers',
         () => {
-          expect(this._obj).to.be.a('string');
-          expect(_.parseInt(this._obj)).to.be.a('number');
-          expect(_.parseInt(this._obj)).to.be.within(MINIMUM_HTTP_STATUS, MAXIMUM_HTTP_STATUS);
+          expect(obj).to.be.an('object');
+          expect(obj).to.have.property('about');
         }
       );
     },
-    ErrorCode: function () {
+    ErrorStatus: function (obj) {
       ruleValidator(
         'errors.allowedMembers',
-        () => expect(this._obj).to.be.a('string')
+        () => {
+          expect(obj).to.be.a('string');
+          expect(_.parseInt(obj)).to.be.a('number');
+          expect(_.parseInt(obj)).to.be.within(MINIMUM_HTTP_STATUS, MAXIMUM_HTTP_STATUS);
+        }
       );
     },
-    ErrorTitle: function () {
+    ErrorCode: function (obj) {
       ruleValidator(
         'errors.allowedMembers',
-        () => expect(this._obj).to.be.a('string')
+        () => expect(obj).to.be.a('string')
       );
     },
-    ErrorDetail: function () {
+    ErrorTitle: function (obj) {
       ruleValidator(
         'errors.allowedMembers',
-        () => expect(this._obj).to.be.a('string')
+        () => expect(obj).to.be.a('string')
       );
     },
-    ErrorSource: function () {
+    ErrorDetail: function (obj) {
+      ruleValidator(
+        'errors.allowedMembers',
+        () => expect(obj).to.be.a('string')
+      );
+    },
+    ErrorSource: function (obj) {
       ruleValidator(
         'errors.allowedMembers',
         () => {
           const allowedSourceAttributes = ['pointer', 'parameter'];
-          expect(this._obj).to.be.an('object');
-          expect(_.difference(_.keys(this._obj), allowedSourceAttributes)).to.be.empty;// eslint-disable-line no-unused-expressions
+          expect(obj).to.be.an('object');
+          expect(_.difference(_.keys(obj), allowedSourceAttributes)).to.be.empty;// eslint-disable-line no-unused-expressions
         }
       );
     },
-    ErrorMeta: function () {
+    ErrorMeta: function (obj) {
       ruleValidator(
         'errors.allowedMembers',
-        () => expect(this._obj).to.be.an('object')
+        () => expect(obj).to.be.an('object')
       );
     },
-    Error: function () {
-      const obj = this._obj;
-
+    Error: function (obj) {
       expect(obj).to.be.an('object');
 
       ruleValidator.forEach(
@@ -87,9 +84,7 @@ module.exports = function (_, ruleValidator, expect) {
         }
       );
     },
-    Errors: function () {
-      const obj = this._obj;
-
+    Errors: function (obj) {
       ruleValidator(
         'errors.isArray',
         () => expect(obj).to.be.an('array')

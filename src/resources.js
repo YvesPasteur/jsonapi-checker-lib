@@ -3,9 +3,7 @@
 module.exports = function (_, ruleValidator, expect) {
 
   return {
-    ResourceObject: function (options) {
-      const obj = this._obj;
-
+    ResourceObject: function (obj, options) {
       const testIdAndType = function () {
         const fromClient = (options && options.fromClient) || false;
         const method = (options && options.method ? options.method : null);
@@ -88,9 +86,7 @@ module.exports = function (_, ruleValidator, expect) {
       testRelationships();
       testLinks();
     },
-    ResourceIdentifier: function () {
-      const obj = this._obj;
-
+    ResourceIdentifier: function (obj) {
       const allowedProperties = ['id', 'type', 'meta'];
       const unallowedProperties = _.difference(_.keys(obj), allowedProperties);
 
@@ -121,9 +117,7 @@ module.exports = function (_, ruleValidator, expect) {
         unallowedProperties[0]
       );
     },
-    ResourceCollection: function () {
-      const obj = this._obj;
-
+    ResourceCollection: function (obj) {
       ruleValidator(
         'resourceObject.collectionIsArray',
         () => expect(obj).to.be.an('array')

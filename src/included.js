@@ -3,9 +3,7 @@
 module.exports = function (_, ruleValidator, expect) {
   const identifiersUtils = require('./utils/identifiers.js')(_);
   return {
-    Included: function () {
-      const obj = this._obj;
-
+    Included: function (obj) {
       ruleValidator(
         'includedResources.isArray',
         () => expect(obj).to.be.an('array')
@@ -16,7 +14,7 @@ module.exports = function (_, ruleValidator, expect) {
         (value) => expect(value).to.be.ResourceObject()
       );
     },
-    FullLinkage: function (document) {
+    FullLinkage: function (obj, document) {
       const definedResourceIdentifiers = identifiersUtils.getAllDefinedResourceIdentifiers(document, []);
       const primaryDataResourceIdentifiers = identifiersUtils.getAllDefinedResourceIdentifiers(document.data, []);
       const referencesResourceIdentifiers = identifiersUtils.getAllReferencesResourceIdentifiers(document, []);
@@ -31,7 +29,7 @@ module.exports = function (_, ruleValidator, expect) {
         () => expect(definedAndNotReferencedIdentifiers).to.be.empty
       );
     },
-    UniqueResourceObject: function (document) {
+    UniqueResourceObject: function (obj, document) {
       const formatToDic = function (identifiers) {
         const addValue = function (acc, identifier) {
           const key = identifier.type + '-' + identifier.id;

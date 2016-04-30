@@ -2,9 +2,7 @@
 
 module.exports = function (_, ruleValidator, expect) {
   return {
-    ResourceLinkage: function () {
-      const obj = this._obj;
-
+    ResourceLinkage: function (obj) {
       if (obj === null || obj === []) {
         return;
       }
@@ -18,9 +16,7 @@ module.exports = function (_, ruleValidator, expect) {
         expect(obj).to.be.ResourceIdentifier();
       }
     },
-    Relationship: function () {
-      const obj = this._obj;
-
+    Relationship: function (obj) {
       ruleValidator(
         'relationships.relationshipIsObject',
         () => {
@@ -55,9 +51,7 @@ module.exports = function (_, ruleValidator, expect) {
         );
       }
     },
-    Relationships: function () {
-      const obj = this._obj;
-
+    Relationships: function (obj) {
       ruleValidator(
         'relationships.isObject',
         () => expect(obj).to.be.an('object')

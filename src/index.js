@@ -16,15 +16,13 @@ const rules = _.assign(
   require('./included')(_, ruleValidator, expect),
   require('./fields')(_, ruleValidator, expect),
   {
-    ValidDocument: function (options) {
-      const obj = this._obj;
+    ValidDocument: function (obj, options) {
       expect(obj).to.be.Root();
       expect(obj).to.be.Data(options);
       expect(obj).to.be.IncludedRoot();
       expect(obj).to.be.ErrorsRoot();
     },
-    ValidHeaders: function() {
-      const givenHeaders = this._obj;
+    ValidHeaders: function(givenHeaders) {
       const expectedContentType = 'application/vnd.api+json';
 
       ruleValidator(
@@ -35,6 +33,16 @@ const rules = _.assign(
   }
 );
 
-_.forEach(rules, (value, key) => chai.Assertion.addMethod(key, value));
+_.forEach(
+  rules,
+  (value, key) => chai.Assertion.addMethod(key, function() {
+      var args = Array.from(arguments);
+
+      // jscs:disable disallowDanglingUnderscores
+      args.unshift(this._obj);// eslint-disable-line no-underscore-dangle
+      // jscs:enable disallowDanglingUnderscores
+      return _.spread(value)(args);
+    })
+);
 
 module.exports = chai.expect;

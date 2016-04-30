@@ -3,9 +3,8 @@
 module.exports = function (_, ruleValidator, expect) {
 
   return {
-    Attributes: function () {
+    Attributes: function (obj) {
       const objectUtil = require('./utils/object.js')(_);
-      const obj = this._obj;
       const allKeys = objectUtil.getAllKeys(obj);
 
       ruleValidator(

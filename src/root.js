@@ -3,9 +3,7 @@
 module.exports = function (_, ruleValidator, expect) {
 
   return {
-    Root: function () {
-      const obj = this._obj;
-
+    Root: function (obj) {
       ruleValidator(
         'topLevel.isObject',
         () => expect(obj).be.an('object')
@@ -32,8 +30,8 @@ module.exports = function (_, ruleValidator, expect) {
         }
       );
     },
-    Data: function (options) {
-      var data = this._obj.data;
+    Data: function (obj, options) {
+      var data = obj.data;
 
       if (_.isUndefined(data) || data === null) {
         return;
@@ -59,8 +57,7 @@ module.exports = function (_, ruleValidator, expect) {
         );
       }
     },
-    IncludedRoot: function () {
-      const obj = this._obj;
+    IncludedRoot: function (obj) {
       const included = obj.included;
       if (_.isUndefined(included)) {
         return;
@@ -91,8 +88,8 @@ module.exports = function (_, ruleValidator, expect) {
         'included'
       );
     },
-    ErrorsRoot: function () {
-      var errors = this._obj.errors;
+    ErrorsRoot: function (obj) {
+      var errors = obj.errors;
       if (_.isUndefined(errors)) {
         return;
       }

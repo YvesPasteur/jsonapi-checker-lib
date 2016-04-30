@@ -2,9 +2,7 @@
 
 module.exports = function (_, ruleValidator, expect) {
   return {
-    Link: function () {
-      const obj = this._obj;
-
+    Link: function (obj) {
       if (typeof obj === 'string') {
         return;
       }
@@ -17,9 +15,7 @@ module.exports = function (_, ruleValidator, expect) {
         }
       );
     },
-    Links: function () {
-      const obj = this._obj;
-
+    Links: function (obj) {
       ruleValidator(
         'links.linksIsObject',
         () => expect(obj).to.be.an('object')

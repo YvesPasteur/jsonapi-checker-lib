@@ -6,8 +6,9 @@ module.exports = function(_) {
     var Assertion = chai.Assertion;
 
     Assertion.addMethod('throwError', function (validator) {
-      const obj = this._obj;
-
+      // jscs:disable disallowDanglingUnderscores
+      const obj = this._obj;// eslint-disable-line no-underscore-dangle
+      // jscs:enable disallowDanglingUnderscores
       try {
         obj();
         throw new Error('An error should be thrown');
@@ -17,7 +18,9 @@ module.exports = function(_) {
     });
 
     Assertion.addMethod('TestError', function (message, path, rules) {
-      const obj = this._obj;
+      // jscs:disable disallowDanglingUnderscores
+      const obj = this._obj;// eslint-disable-line no-underscore-dangle
+      // jscs:enable disallowDanglingUnderscores
 
       expect(obj).to.have.property('message')
         .and.to.be.equal(message);

@@ -2,17 +2,13 @@
 
 module.exports = function (_, ruleValidator, expect) {
   return {
-    FieldName: function () {
-      const obj = this._obj;
-
+    FieldName: function (obj) {
       ruleValidator(
         'fields.commonNamespace',
         () => expect(obj).to.not.be.oneOf(['type', 'id'])
       );
     },
-    MemberName: function () {
-      const value = this._obj;
-
+    MemberName: function (value) {
       ruleValidator(
         'fields.restrictMemberName',
         () => {
@@ -24,8 +20,7 @@ module.exports = function (_, ruleValidator, expect) {
         }
       );
     },
-    Fields: function (otherFields) {
-      const value = this._obj;
+    Fields: function (value, otherFields) {
       const ownFieldKeys = _.keys(value);
       const otherFieldKeys = _.keys(otherFields);
       const intersectionFieldKeys = _.intersection(ownFieldKeys, otherFieldKeys);
