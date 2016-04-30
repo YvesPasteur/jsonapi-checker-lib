@@ -9,7 +9,7 @@ var sorting = {
   queryParameter: {
     description: 'An endpoint MAY support requests to sort the primary data with a sort query parameter.',
     requirementLevel: 'MAY',
-    checked: false
+    checked: true
   },
   queryParameterValue: {
     description: 'The value for sort MUST represent sort fields.',

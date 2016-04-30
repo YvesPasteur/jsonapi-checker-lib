@@ -22,6 +22,13 @@ describe('The query parameters', function () {
     done();
   });
 
+  it('sort is reserved for sorting', function (done) {
+    const url = '/foo?sort=someField';
+
+    validator(url).to.be.a.ValidUrl();
+    done();
+  });
+
   it('must adhere to the same constraints as member names', function (done) {
     const url = '/foo?bar!=someValue';
 
