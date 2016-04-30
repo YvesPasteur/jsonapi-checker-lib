@@ -37,10 +37,17 @@ const rules = _.assign(
       if (urlObject.query) {
         _.forIn(
           urlObject.query,
-          (value, key) => ruleValidator(
-            'queryParameter.adhereMemberName',
-            () => expect(key).to.be.MemberName()
-          )
+          (value, key) => {
+            ruleValidator(
+              'queryParameter.adhereMemberName',
+              () => expect(key).to.be.MemberName()
+            );
+
+            ruleValidator(
+              'queryParameter.atLeastOneNonLowerAlphaCharacter',
+              () => expect(key).to.match(/[^a-z]/)
+            );
+          }
         );
       }
     }

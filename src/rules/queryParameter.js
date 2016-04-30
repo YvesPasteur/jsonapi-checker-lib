@@ -7,7 +7,7 @@ var queryParameter = {
     checked: true
   },
   atLeastOneNonLowerAlphaCharacter: {
-    description: 'they MUST contain at least one non a-z character (U+0061 to U+007A)',
+    description: 'Implementation specific query parameters MUST contain at least one non a-z character (U+0061 to U+007A)',
     requirementLevel: 'MUST',
     checked: false
   },
