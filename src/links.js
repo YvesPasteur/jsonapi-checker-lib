@@ -36,5 +36,5 @@ module.exports = function (_) {
         (value) => expect(value).to.be.Link()
       );
     });
-  }
+  };
 };

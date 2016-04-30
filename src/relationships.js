@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = function (_) {
-  var ruleValidator = require('./rules/validator')(_);
+  const ruleValidator = require('./rules/validator')(_);
 
   return function(chai) {
     const expect = chai.expect;

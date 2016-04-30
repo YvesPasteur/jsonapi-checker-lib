@@ -23,7 +23,7 @@ module.exports = function (_) {
         'fields.restrictMemberName',
         () => {
           expect(value).to.be.a('string');
-          expect(value).to.not.be.empty;
+          expect(value).to.not.be.empty;// eslint-disable-line no-unused-expressions
           expect(value).to.match(/^[a-zA-Z0-9-_ ]+$/);
           expect(value).to.not.match(/^[-_ ]/);
           expect(value).to.not.match(/[-_ ]$/);

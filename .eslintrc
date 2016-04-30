@@ -41,6 +41,12 @@
           "TestError"
         ]
       }
+    ],
+    "no-underscore-dangle": [
+      2,
+      {
+        "allow": ["_obj", "_chai"]
+      }
     ]
   }
 }

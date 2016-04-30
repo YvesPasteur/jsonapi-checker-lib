@@ -14,9 +14,9 @@ chai.use(require('./included')(_));
 chai.use(require('./fields')(_));
 
 chai.use(
-  function (chai) {
-    const expect = chai.expect;
-    var Assertion = chai.Assertion;
+  function (_chai) {
+    const expect = _chai.expect;
+    var Assertion = _chai.Assertion;
 
     Assertion.addMethod('ValidDocument', function (options) {
       const obj = this._obj;

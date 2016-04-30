@@ -32,7 +32,7 @@ module.exports = function (_) {
           const bodyKeys = _.keys(obj);
           const unallowedKeys = _.difference(bodyKeys, allowedRootProperties);
 
-          expect(unallowedKeys).to. be.empty;
+          expect(unallowedKeys).to. be.empty;// eslint-disable-line no-unused-expressions
         }
       );
     });

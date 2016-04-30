@@ -20,9 +20,9 @@ describe('The rules validator ', function () {
 
     expect(() => rulesValidator(ruleKey, validationFunction)).to.throwError(
       function(err) {
-        expect(err.message).to.be.empty;
-        expect(err.path).to.be.empty;
-        expect(err.rules).to.be.an('array').and.be.empty;
+        expect(err.message).to.be.empty;// eslint-disable-line no-unused-expressions
+        expect(err.path).to.be.empty;// eslint-disable-line no-unused-expressions
+        expect(err.rules).to.be.an('array').and.be.empty;// eslint-disable-line no-unused-expressions
         return true;
       }
     );
@@ -39,7 +39,7 @@ describe('The rules validator ', function () {
     expect(() => rulesValidator(ruleKey, validationFunction)).to.throwError(
       function(err) {
         expect(err.message).to.be.equal('The value of the attributes key MUST be an object (an "attributes object").');
-        expect(err.path).to.be.empty;
+        expect(err.path).to.be.empty;// eslint-disable-line no-unused-expressions
         expect(err.rules).to.be.an('array').and.to.have.length(1);
         expect(err.rules[0].id).to.be.equal('attributes.isObject');
 
@@ -63,7 +63,7 @@ describe('The rules validator ', function () {
     expect(() => rulesValidator(ruleKey, validationFunction)).to.throwError(
       function(err) {
         expect(err.message).to.be.equal('The value of the attributes key MUST be an object (an "attributes object").\nfoo');
-        expect(err.path).to.be.empty;
+        expect(err.path).to.be.empty;// eslint-disable-line no-unused-expressions
         expect(err.rules).to.be.an('array').and.to.have.length(1);
         expect(err.rules[0].id).to.be.equal('attributes.isObject');
 
@@ -87,7 +87,7 @@ describe('The rules validator ', function () {
       function(err) {
         expect(err.message).to.be.equal('foo');
         expect(err.path).to.be.equal('bar');
-        expect(err.rules).to.be.an('array').and.to.be.empty;
+        expect(err.rules).to.be.an('array').and.to.be.empty;// eslint-disable-line no-unused-expressions
 
         return true;
       }
@@ -110,7 +110,7 @@ describe('The rules validator ', function () {
       function(err) {
         expect(err.message).to.be.equal('foo');
         expect(err.path).to.be.equal('[1].bar');
-        expect(err.rules).to.be.an('array').and.to.be.empty;
+        expect(err.rules).to.be.an('array').and.to.be.empty;// eslint-disable-line no-unused-expressions
 
         return true;
       }
@@ -133,7 +133,7 @@ describe('The rules validator ', function () {
       function(err) {
         expect(err.message).to.be.equal('foo');
         expect(err.path).to.be.equal('part.bar');
-        expect(err.rules).to.be.an('array').and.to.be.empty;
+        expect(err.rules).to.be.an('array').and.to.be.empty;// eslint-disable-line no-unused-expressions
 
         return true;
       }

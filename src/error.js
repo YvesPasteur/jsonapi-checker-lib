@@ -75,7 +75,7 @@ module.exports = function (_) {
         () => {
           const allowedSourceAttributes = ['pointer', 'parameter'];
           expect(this._obj).to.be.an('object');
-          expect(_.difference(_.keys(this._obj), allowedSourceAttributes)).to.be.empty;
+          expect(_.difference(_.keys(this._obj), allowedSourceAttributes)).to.be.empty;// eslint-disable-line no-unused-expressions
         }
       );
     });
