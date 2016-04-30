@@ -41,6 +41,10 @@ const rules = _.assign(
             if (_.indexOf(['filter', 'page', 'sort'], key) !== -1) {
               return;
             }
+            if (key.match(/^fields\[.*\]/) !== null) {
+              return;
+            }
+
             ruleValidator(
               'queryParameter.adhereMemberName',
               () => expect(key).to.be.MemberName()

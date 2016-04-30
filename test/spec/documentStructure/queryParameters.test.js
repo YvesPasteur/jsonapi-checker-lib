@@ -29,6 +29,13 @@ describe('The query parameters', function () {
     done();
   });
 
+  it('fields is reserved for sparse-fields', function (done) {
+    const url = '/foo?fields[articles]=someField';
+
+    validator(url).to.be.a.ValidUrl();
+    done();
+  });
+
   it('must adhere to the same constraints as member names', function (done) {
     const url = '/foo?bar!=someValue';
 

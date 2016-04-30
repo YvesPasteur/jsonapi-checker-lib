@@ -5,7 +5,7 @@ var sparseFieldset = {
     description: 'A client MAY request that an endpoint return only specific fields ' +
       'in the response on a per-type basis by including a fields[TYPE] parameter.',
     requirementLevel: 'MAY',
-    checked: false
+    checked: true
   },
   commaSeparatedList: {
     description: 'The value of the fields parameter MUST be a comma-separated (U+002C COMMA, ",") ' +
