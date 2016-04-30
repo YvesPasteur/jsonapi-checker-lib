@@ -9,7 +9,7 @@ var queryParameter = {
   atLeastOneNonLowerAlphaCharacter: {
     description: 'Implementation specific query parameters MUST contain at least one non a-z character (U+0061 to U+007A)',
     requirementLevel: 'MUST',
-    checked: false
+    checked: true
   },
   recommendedCharacters: {
     description: 'It is RECOMMENDED that a U+002D HYPHEN-MINUS, "-", U+005F LOW LINE, "_", or capital letter is used (e.g. camelCasing).',

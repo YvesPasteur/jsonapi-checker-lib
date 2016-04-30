@@ -38,6 +38,9 @@ const rules = _.assign(
         _.forIn(
           urlObject.query,
           (value, key) => {
+            if (_.indexOf(['filter'], key) !== -1) {
+              return;
+            }
             ruleValidator(
               'queryParameter.adhereMemberName',
               () => expect(key).to.be.MemberName()

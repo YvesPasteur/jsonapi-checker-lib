@@ -8,6 +8,13 @@ describe('The query parameters', function () {
     done();
   });
 
+  it('filter is reserved for filtering data', function (done) {
+    const url = '/foo?filter=someValue';
+
+    validator(url).to.be.a.ValidUrl();
+    done();
+  });
+
   it('must adhere to the same constraints as member names', function (done) {
     const url = '/foo?bar!=someValue';
 
