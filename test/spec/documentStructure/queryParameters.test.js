@@ -36,6 +36,13 @@ describe('The query parameters', function () {
     done();
   });
 
+  it('include is reserved for inclusion of related resources', function (done) {
+    const url = '/foo?include=someField';
+
+    validator(url).to.be.a.ValidUrl();
+    done();
+  });
+
   it('must adhere to the same constraints as member names', function (done) {
     const url = '/foo?bar!=someValue';
 

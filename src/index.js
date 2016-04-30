@@ -38,7 +38,7 @@ const rules = _.assign(
         _.forIn(
           urlObject.query,
           (value, key) => {
-            if (_.indexOf(['filter', 'page', 'sort'], key) !== -1) {
+            if (_.indexOf(['filter', 'page', 'sort', 'include'], key) !== -1) {
               return;
             }
             if (key.match(/^fields\[.*\]/) !== null) {

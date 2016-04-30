@@ -10,7 +10,7 @@ var inclusionOfRelatedResource = {
     description: 'An endpoint MAY also support an include request parameter to allow the client to customize ' +
       'which related resources should be returned.',
     requirementLevel: 'MAY',
-    checked: false
+    checked: true
   },
   includeNotSupported: {
     description: 'If an endpoint does not support the include parameter, it MUST respond with 400 Bad Request to any requests that include it.',
