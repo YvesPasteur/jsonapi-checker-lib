@@ -15,6 +15,13 @@ describe('The query parameters', function () {
     done();
   });
 
+  it('page is reserved for pagination', function (done) {
+    const url = '/foo?page=someValue';
+
+    validator(url).to.be.a.ValidUrl();
+    done();
+  });
+
   it('must adhere to the same constraints as member names', function (done) {
     const url = '/foo?bar!=someValue';
 

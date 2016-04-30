@@ -40,7 +40,7 @@ var pagination = {
   queryParameter: {
     description: 'The page query parameter is reserved for pagination. Servers and clients SHOULD use this key for pagination operations.',
     requirementLevel: 'SHOULD',
-    checked: false
+    checked: true
   }
 };
 
