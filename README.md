@@ -28,10 +28,12 @@ npm i --save jsonapi-checker-lib
 Validate a payload :
 
 ```
-const validator = require('jsonapi-checker-lib').validator;
-validator(body).be.ValidDocument(options);
+const validate = require('jsonapi-checker-lib').validator;
+validate(body).to.be.a.ValidDocument(options);
 
-validator(header).be.ValidHeaders();
+validate(header).to.be.ValidHeaders();
+
+validate(url).to.be.a.ValidUrl()
 ```
 
 The `options` parameter can contain :
